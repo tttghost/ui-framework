@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class panel_Basic : panel_Base<panel_Basic>
+public class panel_Basic : panel_Base
 {
     private TMP_Text tmp_Title;
     private TMP_Text tmp_Content;
@@ -14,13 +14,14 @@ public class panel_Basic : panel_Base<panel_Basic>
         tmp_Title = gameObject.Search<TMP_Text>(nameof(tmp_Title));
         tmp_Content = gameObject.Search<TMP_Text>(nameof(tmp_Content));
     }
+
     /// <summary>
     /// dto_panel_Basic
     /// </summary>
     /// <typeparam name="T2"></typeparam>
     /// <param name="t2"></param>
     /// <returns></returns>
-    public override panel_Basic SetData<T2>(T2 t2)
+    public override panel_Base SetData<T2>(T2 t2)
     {
         dto_panel_Basic dto_panel_Basic = t2 as dto_panel_Basic;
         tmp_Title.text = dto_panel_Basic.title;

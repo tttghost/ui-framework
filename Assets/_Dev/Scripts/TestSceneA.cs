@@ -46,19 +46,23 @@ public class TestSceneA : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            UIManager.instance.PushPanel<panel_Basic>().SetData(new dto_panel_Basic("hi","hello"));
+            var v = UIManager.instance.GetPanel<panel_Basic>();
+            v.SetData("hello");
+            //UIManager.instance.PushPanel<panel_Basic>().SetData(new dto_panel_Basic("hi","hello"));
         }
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            UIManager.instance.PopPanel();
+            UIManager.instance.PushPanel<panel_Basic>();
+            //UIManager.instance.PopPanel();
         }
         if (Input.GetKeyDown(KeyCode.Alpha3))
         {
-            UIManager.instance.GetPanel<panel_Image>().SetData(new dto_panel_Image("cat","testimage")).Push();
+            UIManager.instance.PopPanel();
+            //UIManager.instance.GetPanel<panel_Image>().SetData(new dto_panel_Image("cat","testimage")).Push();
         }
         if (Input.GetKeyDown(KeyCode.Alpha4))
         {
-            UIManager.instance.GetPanel<panel_Basic>().Swap();
+            //UIManager.instance.GetPanel<panel_Basic>().Swap();
         }
     }
 

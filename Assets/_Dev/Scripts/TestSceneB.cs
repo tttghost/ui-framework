@@ -21,11 +21,11 @@ public class TestSceneB : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            UIManager.instance.GetPanel<panel_Basic>().SetData(new dto_panel_Basic("hello", "world")).Push();
+            //UIManager.instance.GetPanel<panel_Basic>().SetData(new dto_panel_Basic("hello", "world")).Push();
         }
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            UIManager.instance.GetPanel<panel_Image>().SetData(new dto_panel_Image("cat", "testimage")).Push();
+            //UIManager.instance.GetPanel<panel_Image>().SetData(new dto_panel_Image("cat", "testimage")).Push();
         }
         if (Input.GetKeyDown(KeyCode.Alpha3))
         {

@@ -15,8 +15,9 @@ public class UIManager : Singleton<UIManager>
 
     #region base
 
-    public Stack<ui_Base> stackPanel { get; set; } = new Stack<ui_Base>();
+    public Stack<panel_Base> stackPanel { get; set; } = new Stack<panel_Base>();
     public ui_Base[] ui_Bases { get;private set; }
+
 
     protected override void Awake()
     {
@@ -97,10 +98,56 @@ public class UIManager : Singleton<UIManager>
 
     #region panel
 
-    public T GetPanel<T>() where T : panel_Base<T>
-    {
-        panel_Base<T> panel_Base = default;
+    //public T GetPanel<T>() where T : panel_Base<T>
+    //{
+    //    panel_Base<T> panel_Base = default;
 
+    //    for (int i = 0; i < ui_Bases.Length; i++)
+    //    {
+    //        panel_Base = ui_Bases[i] as T;
+    //        if (panel_Base)
+    //        {
+    //            break;
+    //        }
+    //    }
+
+    //    return panel_Base as T;
+    //}
+
+    //public T PushPanel<T>() where T : panel_Base<T>
+    //{
+    //    return GetPanel<T>().Push();
+    //}
+
+    //public T SwapPanel<T>() where T : panel_Base<T>
+    //{
+    //    return GetPanel<T>().Swap();
+    //}
+
+    //public ui_Base PopPanel()
+    //{
+    //    if (stackPanel.Count > 0)
+    //    {
+    //        stackPanel.Pop().Close();
+    //    }
+
+    //    ui_Base ui_Base = default;
+    //    if (stackPanel.Count > 0)
+    //    {
+    //        ui_Base = stackPanel.Peek();
+    //        ui_Base.Open();
+    //    }
+
+    //    return ui_Base;
+    //}
+
+
+
+
+
+    public T GetPanel<T>() where T : panel_Base
+    {
+        panel_Base panel_Base = default;
         for (int i = 0; i < ui_Bases.Length; i++)
         {
             panel_Base = ui_Bases[i] as T;
@@ -113,31 +160,50 @@ public class UIManager : Singleton<UIManager>
         return panel_Base as T;
     }
 
-    public T PushPanel<T>() where T : panel_Base<T>
+    public T PushPanel<T>() where T : panel_Base
     {
-        return GetPanel<T>().Push();
-    }
+        if (stackPanel.Count > 0)
+        {
+            stackPanel.Peek().Close();
+        }
 
-    public T SwapPanel<T>() where T : panel_Base<T>
-    {
-        return GetPanel<T>().Swap();
-    }
+        T t = GetPanel<T>();
+        stackPanel.Push(t);
+        t.Open();
 
-    public ui_Base PopPanel()
+        return t;
+    }
+    public panel_Base PopPanel()
     {
         if (stackPanel.Count > 0)
         {
             stackPanel.Pop().Close();
         }
 
-        ui_Base ui_Base = default;
+        panel_Base panel_Base = default;
         if (stackPanel.Count > 0)
         {
-            ui_Base = stackPanel.Peek();
-            ui_Base.Open();
+            panel_Base = stackPanel.Peek() as panel_Base;
+            panel_Base.Open();
         }
 
-        return ui_Base;
+        return panel_Base;
+    }
+
+
+
+    public T SwapPanel<T>() where T : panel_Base
+    {
+        if (stackPanel.Count > 0)
+        {
+            stackPanel.Pop().Close();
+        }
+
+        T t = GetPanel<T>();
+        stackPanel.Push(t);
+        t.Open();
+
+        return t;
     }
 
     #endregion
