@@ -9,6 +9,8 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write  # ✅ GitHub Actions에 브랜치 생성 권한 부여
+    env:
+      ACTIONS_STEP_DEBUG: true  # ✅ Debug 모드 활성화 (잘못된 위치 수정)
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
