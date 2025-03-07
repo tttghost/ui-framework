@@ -1,15 +1,15 @@
-name: First Interaction
+name: Add Random Cat Image to Issues
 
 on:
   issues:
     types: [opened]
 
 jobs:
-  first-interaction:
+  add-cat-image:
     runs-on: ubuntu-latest
     steps:
-      - name: First interaction comment
-        uses: actions/first-interaction@v1
+      - name: Add a random cat image to issues
+        uses: actions-cool/issues-helper@v1
         with:
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
-          issue-message: "Thank you for opening your first issue! We appreciate your contribution."
+          images: '["https://cataas.com/cat/gif", "https://cataas.com/cat/cute", "https://cataas.com/cat/funny"]'
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
