@@ -1,13 +1,14 @@
-name: Add Random Meme to Issues 🚀
+name: Add Random Cat GIF to Issues
 
 on:
   issues:
-    types:
-      - opened  # ✅ 새로운 이슈가 생성될 때 실행
+    types: [opened]
 
 jobs:
-  add-meme:
+  add-cat-gif:
     runs-on: ubuntu-latest
     steps:
-      - name: Add a random meme to issues
-        uses: jessfraz/random-meme@master
+      - name: Add a random cat GIF to issues
+        uses: k33g/auto-lolcat@v1
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
