@@ -1,20 +1,13 @@
-name: Create Issue Branch 🚀
+name: Create Issue Branch
 
 on:
   issues:
-    types: [opened, assigned]  # ✅ 이슈가 생성되거나 할당될 때 실행
-  issue_comment:
-    types: [created]  # ✅ 이슈에 댓글이 달릴 때 실행 (ChatOps 모드)
-  pull_request:
-    types: [opened, closed]  # ✅ PR이 생성되거나 닫힐 때 실행
+    types: [opened]
 
 jobs:
   create_issue_branch:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4
-
       - name: Create Issue Branch
         uses: robvanderleek/create-issue-branch@main
         env:
