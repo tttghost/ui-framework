@@ -1,0 +1,13 @@
+name: Add Random Meme to Issues 🚀
+
+on:
+  issues:
+    types:
+      - opened  # ✅ 새로운 이슈가 생성될 때 실행
+
+jobs:
+  add-meme:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Add a random meme to issues
+        uses: jessfraz/random-meme@master
