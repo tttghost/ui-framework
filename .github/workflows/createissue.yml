@@ -1,4 +1,4 @@
-name: Create Issue Branch
+name: Create Issue Branch 🚀
 
 on:
   issues:
@@ -8,7 +8,7 @@ jobs:
   create_issue_branch:
     runs-on: ubuntu-latest
     permissions:
-      contents: write  # ✅ GitHub Actions에 Write 권한 부여
+      contents: write  # ✅ GitHub Actions에 브랜치 생성 권한 부여
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
@@ -19,3 +19,4 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           baseBranch: "main"  # ✅ 브랜치 생성 시 기준 브랜치 지정
+          branchName: "issue-${{ github.event.issue.number }}"  # ✅ 이슈 번호 기반 브랜치 이름 강제 지정
