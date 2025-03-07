@@ -1,0 +1,17 @@
+name: Push Notification to Slack
+
+on:
+  push:
+    branches:
+      - main  # 원하는 브랜치 변경 가능
+
+jobs:
+  notify-slack:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send notification to Slack
+        uses: rtCamp/action-slack-notify@v2
+        env:
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+          SLACK_MESSAGE: "🚀 새로운 푸시 발생!\n브랜치: ${{ github.ref }}\n커밋: ${{ github.event.head_commit.message }}\n작성자: ${{ github.actor }}"
+          SLACK_COLOR: "#36a64f"
