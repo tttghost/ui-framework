@@ -10,7 +10,9 @@ jobs:
     permissions:
       contents: write  # ✅ GitHub Actions에 브랜치 생성 권한 부여
     env:
-      ACTIONS_STEP_DEBUG: true  # ✅ Debug 모드 활성화 (잘못된 위치 수정)
+      ACTIONS_STEP_DEBUG: true  # ✅ Debug 모드 활성화
+      CREATE_ISSUE_BRANCH_BASEBRANCH: "main"  # ✅ 브랜치 생성 기준 브랜치
+      CREATE_ISSUE_BRANCH_BRANCHNAME: "issue-${{ github.event.issue.number }}"  # ✅ 브랜치 이름 형식
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
@@ -19,6 +21,3 @@ jobs:
         uses: robvanderleek/create-issue-branch@main
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          baseBranch: "main"  # ✅ 브랜치 생성 시 기준 브랜치 지정
-          branchName: "issue-${{ github.event.issue.number }}"  # ✅ 이슈 번호 기반 브랜치 이름 강제 지정
