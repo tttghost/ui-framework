@@ -12,7 +12,7 @@ jobs:
     env:
       ACTIONS_STEP_DEBUG: true  # ✅ Debug 모드 활성화
       CREATE_ISSUE_BRANCH_BASEBRANCH: "main"  # ✅ 기준 브랜치 지정
-      CREATE_ISSUE_BRANCH_PATTERN: "issue-\${issue.number}"  # ✅ 브랜치 이름 패턴 설정
+      CREATE_ISSUE_BRANCH_PATTERN: "issue-${{ github.event.issue.number }}"  # ✅ 브랜치 이름 패턴 설정 (오타 수정)
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
