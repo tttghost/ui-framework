@@ -11,8 +11,8 @@ jobs:
       contents: write  # ✅ GitHub Actions에 브랜치 생성 권한 부여
     env:
       ACTIONS_STEP_DEBUG: true  # ✅ Debug 모드 활성화
-      CREATE_ISSUE_BRANCH_BASEBRANCH: "main"  # ✅ 브랜치 생성 기준 브랜치
-      CREATE_ISSUE_BRANCH_BRANCHNAME: "issue-${{ github.event.issue.number }}"  # ✅ 브랜치 이름 형식
+      CREATE_ISSUE_BRANCH_BASEBRANCH: "main"  # ✅ 기준 브랜치 지정
+      CREATE_ISSUE_BRANCH_PATTERN: "issue-\${issue.number}"  # ✅ 브랜치 이름 패턴 설정
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
