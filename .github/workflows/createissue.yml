@@ -1,14 +1,27 @@
-name: Auto Comment on Issue
+name: Random Cat Comment on Issue
 
 on:
   issues:
     types: [opened]
 
 jobs:
-  add-comment:
+  add-cat-comment:
     runs-on: ubuntu-latest
     steps:
-      - name: Add comment to issue
+      - name: Select Random Cat Image
+        id: random-cat
+        run: |
+          cats=(
+            "https://cataas.com/cat"
+            "https://cataas.com/cat/cute"
+            "https://cataas.com/cat/says/Hello"
+            "https://cataas.com/cat/says/Meow"
+            "https://cataas.com/cat/gif"
+          )
+          RANDOM_CAT=${cats[$RANDOM % ${#cats[@]}]}
+          echo "cat_url=$RANDOM_CAT" >> $GITHUB_ENV
+
+      - name: Add cat image comment
         uses: actions/github-script@v7
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
@@ -17,5 +30,7 @@ jobs:
               owner: context.repo.owner,
               repo: context.repo.repo,
               issue_number: context.payload.issue.number,
-              body: "잘 생성되었습니다! 🎉"
+              body: `이슈가 정상적으로 등록되었습니다! 🎉  
+              랜덤 고양이 짤을 받아라! 🐱  
+              ![고양이](${{ env.cat_url }})`
             });
