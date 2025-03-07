@@ -7,8 +7,15 @@ on:
 jobs:
   create_issue_branch:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write  # ✅ GitHub Actions에 Write 권한 부여
     steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
       - name: Create Issue Branch
         uses: robvanderleek/create-issue-branch@main
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          baseBranch: "main"  # ✅ 브랜치 생성 시 기준 브랜치 지정
